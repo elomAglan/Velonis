@@ -1,38 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { FaHome, FaInfoCircle, FaServicestack, FaPhoneAlt } from "react-icons/fa";
 import { AiFillFacebook, AiFillTwitterCircle } from "react-icons/ai";
-import { FiMenu, FiX } from "react-icons/fi"; // Icônes pour le menu mobile
+import { FiMenu, FiX } from "react-icons/fi";
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false); // État pour le menu mobile
+  const [isTransparent, setIsTransparent] = useState(true); // Transparence pour petits écrans
 
-  // Fonction pour détecter la section visible
+  // Gestion du défilement pour ajuster la transparence et l'active link
   const handleScroll = () => {
-    const sections = [
-      { id: "home", offset: document.getElementById("home")?.offsetTop || 0 },
-      { id: "about", offset: document.getElementById("about")?.offsetTop || 0 },
-      { id: "services", offset: document.getElementById("services")?.offsetTop || 0 },
-      { id: "contact", offset: document.getElementById("contact")?.offsetTop || 0 },
-    ];
+    const currentScrollY = window.scrollY;
 
-    const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-    const currentSection = sections
-      .filter((section) => section.offset <= scrollPosition)
-      .pop();
-
-    if (currentSection && currentSection.id !== activeLink) {
-      setActiveLink(currentSection.id);
+    if (currentScrollY > 10) {
+      setIsTransparent(false);
+    } else {
+      setIsTransparent(true);
     }
+
+    // Mise à jour dynamique de l'activeLink
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      const top = section.offsetTop - 80; // Ajuster selon la hauteur de la navbar
+      const bottom = top + section.offsetHeight;
+      
+      if (currentScrollY >= top && currentScrollY < bottom) {
+        setActiveLink(section.id); // Met à jour activeLink en fonction de la position du scroll
+      }
+    });
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [activeLink]);
+  }, []);
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -41,8 +45,12 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-blue-900 text-white py-4 shadow-md fixed top-0 left-0 w-full z-50">
-      <div className="container mx-auto flex justify-between items-center px-4">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
+        isTransparent ? "bg-transparent" : "bg-blue-900"
+      } text-white shadow-md`}
+    >
+      <div className="container mx-auto flex justify-between items-center px-4 py-4">
         {/* Logo de la société */}
         <div className="flex items-center space-x-3">
           <h1 className="text-2xl font-bold">Velonis</h1>
@@ -65,7 +73,8 @@ const Header = () => {
           }`}
         >
           <ul className="flex flex-col md:flex-row md:space-x-6 items-center md:items-baseline">
-            {[{ id: "home", label: "Accueil", icon: <FaHome /> },
+            {[
+              { id: "home", label: "Accueil", icon: <FaHome /> },
               { id: "about", label: "À propos", icon: <FaInfoCircle /> },
               { id: "services", label: "Services", icon: <FaServicestack /> },
               { id: "contact", label: "Contact", icon: <FaPhoneAlt /> },

@@ -9,8 +9,8 @@ const ContactSection = () => {
         {/* Titre */}
         <motion.h2
           className="text-5xl font-extrabold text-blue-800 mb-6 tracking-wide"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
           Contactez-nous
@@ -39,8 +39,8 @@ const ContactSection = () => {
         {/* Formulaire de contact */}
         <motion.div
           className="mt-10 flex flex-col items-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
           <form className="w-full max-w-lg bg-white p-8 rounded-xl shadow-md border border-gray-200">

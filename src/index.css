@@ -4,3 +4,26 @@
 html {
   scroll-behavior: smooth;
 }
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Le texte commence plus bas */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Le texte monte et devient opaque */
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1.5s ease-out forwards;
+}
+
+/* Ajouter un délai d'animation pour les éléments suivants */
+.animate-delay-1s {
+  animation-delay: 1s; /* Ajoute un délai de 1 seconde pour la deuxième ligne */
+}
+
+.animate-delay-2s {
+  animation-delay: 2s; /* Ajoute un délai de 2 secondes pour la troisième ligne */
+}

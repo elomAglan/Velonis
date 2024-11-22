@@ -31,12 +31,18 @@ const AboutSection = () => {
       <div className="mt-12 container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 px-4">
         
         {/* Section Mission */}
-        <div className="flex flex-col items-center justify-center text-center max-w-md mx-auto bg-blue-50 rounded-lg p-6 shadow-lg transition transform duration-500 hover:scale-105 hover:shadow-2xl">
+        <motion.div
+          className="flex flex-col items-center justify-center text-center max-w-md mx-auto bg-blue-50 rounded-lg p-6 shadow-lg"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          whileHover={{ scale: 1.05 }}  // Hover discret
+        >
           <motion.h3
             className="text-xl font-semibold text-blue-700 mb-4"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
           >
             Mission
           </motion.h3>
@@ -45,15 +51,21 @@ const AboutSection = () => {
             Nous croyons en l'innovation comme moteur de croissance. Chaque solution que nous
             proposons est conçue pour apporter de la valeur ajoutée à nos clients.
           </p>
-        </div>
+        </motion.div>
 
         {/* Section Valeurs */}
-        <div className="flex flex-col items-center justify-center text-center max-w-md mx-auto bg-green-50 rounded-lg p-6 shadow-lg transition transform duration-500 hover:scale-105 hover:shadow-2xl">
+        <motion.div
+          className="flex flex-col items-center justify-center text-center max-w-md mx-auto bg-green-50 rounded-lg p-6 shadow-lg"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          whileHover={{ scale: 1.05 }}  // Hover discret
+        >
           <motion.h3
             className="text-xl font-semibold text-blue-700 mb-4"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
           >
             Confiance
           </motion.h3>
@@ -63,15 +75,21 @@ const AboutSection = () => {
             en étroite collaboration avec nos clients pour comprendre leurs besoins et trouver
             des solutions personnalisées.
           </p>
-        </div>
+        </motion.div>
 
         {/* Section Unité */}
-        <div className="flex flex-col items-center justify-center text-center max-w-md mx-auto bg-blue-50 rounded-lg p-6 shadow-lg transition transform duration-500 hover:scale-105 hover:shadow-2xl">
+        <motion.div
+          className="flex flex-col items-center justify-center text-center max-w-md mx-auto bg-blue-50 rounded-lg p-6 shadow-lg"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          whileHover={{ scale: 1.05 }}  // Hover discret
+        >
           <motion.h3
             className="text-xl font-semibold text-blue-700 mb-4"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
           >
             Unité
           </motion.h3>
@@ -80,7 +98,7 @@ const AboutSection = () => {
             Notre équipe est composée d'experts passionnés, toujours prêts à relever les défis
             et à apporter des solutions innovantes aux entreprises.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
